@@ -1,4 +1,4 @@
--- PREMIUM BADGE-STYLE KEY PANEL (FINAL + 12H CACHE + LOADER)
+-- PREMIUM BADGE-STYLE KEY PANEL (FINAL FIXED + 12H CACHE + LOADER)
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -200,24 +200,25 @@ DiscordBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- ================= KEY VALIDATION =================
+-- ================= KEY VALIDATION (FIXED) =================
 VerifyBtn.MouseButton1Click:Connect(function()
-    local key = KeyBox.Text
+    local key = KeyBox.Text:match("^%s*(.-)%s*$") -- trim spaces
+    local valid = false
+
     local success, data = pcall(function()
         return game:HttpGet("https://raw.githubusercontent.com/kielsvu/Utility/refs/heads/Lua/Utility/Major/Main.txt")
     end)
 
-    local valid = false
     if success and data then
+        local keys = {}
+        for k in data:gmatch("[^\r\n]+") do
+            keys[k:match("^%s*(.-)%s*$")] = true
+        end
+
         if key == devKey and LocalPlayer.UserId == devUserId then
             valid = true
-        else
-            for k in data:gmatch("%S+") do
-                if k == key then
-                    valid = true
-                    break
-                end
-            end
+        elseif keys[key] then
+            valid = true
         end
     end
 
