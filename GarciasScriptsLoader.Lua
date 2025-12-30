@@ -1,14 +1,23 @@
+-- GAME PLACE LOAD MAP
 local Games = {
     [7305309231] = "loadstring(game:HttpsGet("https://raw.githubusercontent.com/kielsvu/Scripts/refs/heads/main/TaxiBoss.Lua"))()",
+    [15893203988] = "loadstring(game:HttpsGet("https://raw.githubusercontent.com/kielsvu/Scripts/refs/heads/main/TaxiBoss.Lua"))()",
+
+    default = "https://raw.githubusercontent.com/kielsvu/Scripts/refs/heads/main/Main.lua"
 }
 
-local id = game.PlaceId
-local url = Games[id] or Games["default"]
+-- GET CURRENT PLACE ID
+local placeId = game.PlaceId
 
-local function loadsrc(l)
-    local s = game:HttpGet(l)
-    local f = loadstring(s)
-    return f()
+-- PICK URL (PLACE OR DEFAULT)
+local scriptUrl = Games[placeId] or Games.default
+
+-- LOAD FUNCTION
+local function loadsrc(url)
+    local source = game:HttpGet(url)
+    local func = loadstring(source)
+    return func()
 end
 
-loadsrc(url)
+-- EXECUTE
+loadsrc(scriptUrl)
