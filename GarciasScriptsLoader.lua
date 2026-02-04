@@ -9,6 +9,8 @@ local GameScripts = {
     [136599248168660] = "https://raw.githubusercontent.com/KielKeyHandler/Util/refs/heads/main/SoloHunter.lua",
     [75992362647444]  = "https://raw.githubusercontent.com/KielKeyHandler/Util/refs/heads/main/TapTapSimulator.lua",
     [74260430392611]  = "https://raw.githubusercontent.com/KielKeyHandler/Util/refs/heads/main/RebirthChampionUlti.lua",
+    [994732206]       = "https://raw.githubusercontent.com/KielKeyHandler/Util/refs/heads/main/Centudox.lua",
+    [130247632398296] = "https://raw.githubusercontent.com/KielKeyHandler/Util/refs/heads/main/Afse.lua",
 }
 
 local function HttpGet(url)
